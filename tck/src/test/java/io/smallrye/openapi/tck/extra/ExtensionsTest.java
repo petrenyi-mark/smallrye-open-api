@@ -72,5 +72,14 @@ public class ExtensionsTest extends BaseTckTest<ExtensionsTest.ExtensionsTestArq
             vr.body(operation + ".x-operation-extension-2", equalTo("Operation extension wrapper value (2)."));
             vr.body(operation + ".x-type-extension", nullValue());
         }
+
+        @RunAsClient
+        @Test(dataProvider = "formatProvider")
+        public void testOperationPropertyExtensions(String type) {
+            ValidatableResponse vr = this.callEndpoint(type);
+            String property = "components.schemas.ExtensionModel.properties.extendedProperty";
+//            vr.body(property + ".description", equalTo("extendedProperty description"));
+            vr.body(property + ".x-propertyExtension", equalTo("Property extension value."));
+        }
     }
 }

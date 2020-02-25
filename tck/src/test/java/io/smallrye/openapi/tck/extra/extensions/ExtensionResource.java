@@ -23,6 +23,8 @@ import javax.ws.rs.Path;
 import org.eclipse.microprofile.openapi.annotations.extensions.Extension;
 import org.eclipse.microprofile.openapi.annotations.extensions.Extensions;
 
+import io.smallrye.openapi.tck.extra.extensions.model.ExtensionModel;
+
 /**
  * @author eric.wittmann@gmail.com
  */
@@ -52,6 +54,12 @@ public class ExtensionResource {
     })
     public String getValueWithOperationExtensionWrapper() {
         return "Operation wrapper extension value.";
+    }
+
+    @GET
+    @Path("/propertyExtension")
+    public ExtensionModel getValueWithPropertyExtension() {
+        return new ExtensionModel().withProperty("Property extension value.");
     }
 
 }
